@@ -1,0 +1,9 @@
+{
+  "application_id": "gov.ao.ggpen.maps.poc",
+  "revision": 1,
+  "latest_version_code": 2,
+  "minimum_version_code": 2,
+  "latest_version_name": "0.3.0-poc",
+  "download_url": "https://github.com/joaodvn/maps-apk-downloads/releases/tag/v0.3.0-poc",
+  "message": "Atualize sem desinstalar para preservar as missões e rascunhos."
+}

@@ -1,28 +1,35 @@
-# maps-apk — APK de teste Android
+# maps-apk — distribuição Android
 
-[**Descarregar APK v0.2.0-poc — 73 MB**](https://github.com/joaodvn/maps-apk-downloads/releases/download/v0.2.0-poc/maps-apk-v0.2.0-poc.apk)
+[**Descarregar APK 0.3.0-poc — 73 MB**](https://github.com/joaodvn/maps-apk-downloads/releases/download/v0.3.0-poc/maps-apk-v0.3.0-poc.apk)
 
-[Release e checksum SHA-256](https://github.com/joaodvn/maps-apk-downloads/releases/tag/v0.2.0-poc)
+[Release e SHA-256](https://github.com/joaodvn/maps-apk-downloads/releases/tag/v0.3.0-poc)
 
-Download público, sem conta GitHub. Este repositório distribui os APKs e as instruções; o código-fonte permanece no repositório privado.
+Download público, sem login. O código-fonte permanece privado. A branch `apk` contém instruções e política de atualização; os instaladores estão em Releases.
 
-## Instalar no celular ou tablet
+## Instalação e atualização
 
-1. Abrir o link de download no navegador do Android.
-2. Descarregar e abrir o ficheiro APK.
-3. Se solicitado, permitir instalação a partir do navegador ou gestor de ficheiros usado.
-4. Na aplicação: **Verificar pacote → Preparar offline → Mapa**.
-5. Para testar recolha: identificar o agente **POC001** na aba Missão.
+1. Descarregar e abrir o APK no Android.
+2. Se solicitado, permitir instalação pelo navegador/gestor de ficheiros.
+3. **Instalar por cima da versão anterior, sem desinstalar**, para preservar missões e UUID.
+4. Na app: **Missão → Verificar pacote → Preparar offline → Mapa**.
+5. Identificar o agente de teste **POC001** para selecionar polígonos e preencher o formulário.
 
-Requer **Android 8.0/API 26 ou superior**. APK universal de teste, assinado com chave de debug; não é uma versão de produção nem uma publicação na Play Store. Hardware alvo: ZTE T0802, ainda por ensaiar fisicamente.
+Requer Android 8.0/API 26+. Versão 0.3.0-poc, código 2, mesma assinatura debug da 0.2. Missões anteriores podem ser reabertas nas abas Missão/Sync.
 
-## Conteúdo
+## Esta versão
 
-- Imagem real de referência de Luanda incluída: 159 tiles, zoom 14–19, preparada para uso offline.
-- Polígonos, identidades e dados de recolha sintéticos.
-- Formulário com rascunhos locais e sincronização mock.
-- Sem ligação a produção ou à AGT. Guardado/sincronizado não significa validado fiscalmente.
+- Ícone com avatar e versão visível.
+- Imagem de Luanda e 677 polígonos reais de referência selecionáveis, disponíveis offline.
+- Formulário, autosave, auditoria, outbox e Device UUID persistente.
+- Avisos e exigência de atualização por [política remota](update-policy.json). Cache offline e notificações quando autorizadas; não é push instantâneo.
+- Backend HTTPS/MySQL preparado para homologação. URL/token requerem provisionamento pelo responsável; não há produção configurada no APK.
 
-Build e lint sem erros, 26 testes JVM e 1 teste nativo offline aprovados no projeto de origem. O SHA-256 do APK está nos assets da release.
+IDs vêm do GeoPackage, não representam automaticamente cadastro fiscal confirmado. Usar dados fictícios no formulário até homologação. Sincronização mock é local e não prova custódia real. Não há submissão à AGT ou tracking de produção.
 
-A branch `apk` contém apenas documentação de distribuição. Os instaladores ficam em **Releases**, evitando guardar binários sucessivos no histórico Git.
+35 testes JVM, 13 testes MySQL e 1 teste nativo offline aprovados. A versão 0.2 foi testada pelo utilizador num Android físico; a nova 0.3 ainda deve ser ensaiada no ZTE T0802.
+
+## Política de atualização
+
+A 0.2 precisa desta primeira atualização manual. A partir da 0.3, a aplicação consulta `update-policy.json` no arranque/regresso, manualmente e periodicamente com rede. `latest_version_code` controla aviso opcional; `minimum_version_code` controla bloqueio de novas recolhas. Rascunhos são preservados e operações concluídas continuam sincronizáveis.
+
+Publicar primeiro o APK e só depois uma política com revisão crescente. Nunca reutilizar uma revisão com conteúdo alterado. Não há segredos ou identificadores de agentes na política pública.
